@@ -96,6 +96,51 @@ Write a script `05-exit-code.sh` that:
 3. Runs `ping -c1 google.com` and checks — print `Host reachable` or `Host not reachable`
 4. At the end, exit the script with code `0` if all commands succeeded, or `1` if any failed
 
+* **SCRIPT:**
+```
+#!/bin/bash
+
+# Initialize a variable to track if any command fails (0 means all good)
+ANY_FAILED=0
+
+# Validation Function
+# Arguments: 
+#   $1 - The exit status of the command ($?)
+#   $2 - Message to print on SUCCESS
+#   $3 - Message to print on FAILURE
+validate() {
+    local exit_status=$1
+    local success_msg=$2
+    local failure_msg=$3
+
+    if [ $exit_status -eq 0 ]; then
+        echo "$success_msg"
+    else
+        echo "$failure_msg"
+        ANY_FAILED=1  # Mark that at least one error occurred
+    fi
+}
+
+# 1. Run ls /tmp
+ls /tmp &> /dev/null
+validate $? "SUCCESS" "FAILURE"
+
+# 2. Run ls /fakedir
+ls /fakedir &> /dev/null
+validate $? "SUCCESS" "FAILURE"
+
+# 3. Run ping -c1 google.com
+ping -c1 google.com &> /dev/null
+validate $? "Host reachable" "Host not reachable"
+
+# Final Check: Exit with 0 if all succeeded, or 1 if any failed
+if [ $ANY_FAILED -eq 0 ]; then
+    exit 0
+else
+    exit 1
+fi
+```
+
 ---
 
 ## Assignment 6 — Conditions: Even or Odd
