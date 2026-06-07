@@ -352,7 +352,19 @@ Example:
 ./largest.sh 12 56 3 89 42
 # Output: Largest number is 89
 ```
+large_num="$1"
 
+for num in $@
+do
+        if [ $num -gt $large_num ]; then
+                large_num="$num"
+
+        fi
+done
+
+echo "$large_num"
+
+```
 ---
 
 ### 2. Fibonacci Series
