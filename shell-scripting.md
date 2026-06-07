@@ -371,7 +371,18 @@ echo "$large_num"
 Write a script that prints the **Fibonacci series** up to `N` terms.  
 
 Example for `N=7`:
-
+```
+kumar@YokshithNadhan:/mnt/c/Users/kumar$ cat fibonasi_series.sh
+num1=0
+num2=1
+for num in {1..7}
+do
+sum=$(( num1 + num2 ))
+        num1=$num2
+        num2=$num
+        echo "$sum"
+done
+```
 ---
 
 ### 3. Factorial of a Number
@@ -379,7 +390,16 @@ Write a script that calculates the **factorial** of a given number.
 
 Example:
 - Input: `5` → Output: `120`
-
+```
+kumar@YokshithNadhan:/mnt/c/Users/kumar$ cat factorial.sh
+num1=1
+for i in {1..5}
+do
+        fac=$(( num1 * i ))
+        num1=$fac
+done
+echo "$fac"
+```
 ---
 
 ### 4. Pyramid of Stars
