@@ -352,6 +352,7 @@ Example:
 ./largest.sh 12 56 3 89 42
 # Output: Largest number is 89
 ```
+```
 large_num="$1"
 
 for num in $@
@@ -363,7 +364,6 @@ do
 done
 
 echo "$large_num"
-
 ```
 ---
 
