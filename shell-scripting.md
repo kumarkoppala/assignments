@@ -195,7 +195,18 @@ Write a script `08-day-check.sh` that:
 4. For any other day, print `Weekday. Go to school/work.`
 
 ---
+```
+#!/bin/bash
+day=$(date +%A)
 
+if [ $day == "Sunday" ] || [ $day == "Saturday" ] ; then
+        echo "Weekend! Enjoy your holiday."
+elif [ $day == "Monday" ]; then
+        echo "Start of the! go to office"
+else
+        echo "go to scholl"
+fi
+```
 ## Assignment 9 — Conditions: Package Installer
 
 Write a script `09-install.sh` that:
@@ -209,6 +220,30 @@ Write a script `09-install.sh` that:
 Run as: `sudo sh 09-install.sh nginx`
 
 ---
+```
+#!/bin/bash
+
+validate(){
+if [ $1 -ne 0 ]; then
+        echo "$2 installation failed"
+else
+        echo "$2 success"
+fi
+}
+
+for package in $@
+do
+        dpkg -s $package &> /dev/null
+        if [ $? -ne 0 ]; then
+                echo "installing $package"
+
+                apt install $package -y &> /dev/null
+                validate $? "$package"
+        else
+                echo "$package already installed"
+        fi
+done
+```
 
 ## Assignment 10 — Functions
 
@@ -229,7 +264,30 @@ git is already installed
 SUCCESS: wget installed
 FAILURE: curl installation failed
 ```
+```
+#!/bin/bash
 
+validate(){
+if [ $1 -ne 0 ]; then
+        echo "$2 installation failed"
+else
+        echo "$2 success"
+fi
+}
+
+for package in $@
+do
+        dpkg -s $package &> /dev/null
+        if [ $? -ne 0 ]; then
+                echo "installing $package"
+
+                apt install $package -y &> /dev/null
+                validate $? "$package"
+        else
+                echo "$package already installed"
+        fi
+done
+```
 ---
 
 ## Assignment 11 — Redirections & Logging
