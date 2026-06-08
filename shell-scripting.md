@@ -424,6 +424,17 @@ Examples:
 - `12321` → Palindrome  
 - `hello` → Not a Palindrome  
 
+```
+word=$1
+
+rev_word=$( echo -n $word | rev )
+
+if [ "$word" == "$rev_word" ]; then
+        echo "$word palindrome"
+else
+        echo "$word not palindrome"
+fi
+```
 ---
 
 ### 6. Random Password Generator
@@ -431,6 +442,11 @@ Write a script that generates a **random password** of a specified length.
 - The password should contain uppercase, lowercase, digits, and special characters.  
 - Input: password length.  
 - Output: random password string.
+
+# Generates a 12-character password with letters, numbers, and symbols
+password=$(tr -dc 'A-Za-z0-9!@#$%^&*()' < /dev/urandom | head -c 8)
+
+echo "Your generated password is: $password"
 
 ---
 
