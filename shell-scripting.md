@@ -443,11 +443,12 @@ Write a script that generates a **random password** of a specified length.
 - Input: password length.  
 - Output: random password string.
 
-# Generates a 12-character password with letters, numbers, and symbols
+## Generates a 12-character password with letters, numbers, and symbols
+```
 password=$(tr -dc 'A-Za-z0-9!@#$%^&*()' < /dev/urandom | head -c 8)
 
 echo "Your generated password is: $password"
-
+```
 ---
 
 ### 7. Word Frequency Counter
